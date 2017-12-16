@@ -1,0 +1,47 @@
+<template>
+    <require from="bootstrap/css/bootstrap.css"></require>
+    <require from="./styles.css"></require>
+    <require from="./contact-detail"></require>
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" >     
+              <i class="fa fa-user"></i>
+              <span>Home</span>
+            </a>         
+          </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="contacts" >     
+            <i class="fa fa-user"></i>
+            <span>Kursteilnehmer</span>
+          </a>         
+        </div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="friends">
+            <i class="fa fa-user"></i>
+            <span>Friends</span>
+          </a>
+        </div>
+        <!--div class="navbar-header">
+          <a class="navbar-brand" href="group-list">
+            <i class="fa fa-user"></i>
+            <span>Groups</span>
+          </a>
+        
+        </div-->
+      </nav>
+
+      <div class="contact-list">
+          <ul class="list-group">
+            <li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
+              <a route-href="route: contactsDetail; params.bind: {id:contact.id}" click.delegate="$parent.select(contact)">
+                <h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
+                <p class="list-group-item-text">${contact.email}</p>
+              </a>
+            </li>
+          </ul>         
+        </div>
+ 
+</template>

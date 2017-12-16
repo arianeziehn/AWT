@@ -1,0 +1,21 @@
+<template>
+    <require from="bootstrap/css/bootstrap.css"></require>
+    <require from="./styles.css"></require>  
+    <require from="./friend-list"></require> 
+    <require from="./friend-detail"></require>
+
+   
+    <div class="friend-list">              
+    <ul class="list-group">
+      <li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
+        <a route-href="route: friendsDetail; params.bind: {id:contact.id}" click.delegate="$parent.select(contact)">
+          <h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
+          <p class="list-group-item-text">${contact.email}</p>      
+        </a>
+        </li>
+    </ul>
+  </div> 
+ 
+  
+
+</template>

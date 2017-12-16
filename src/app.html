@@ -1,0 +1,46 @@
+    
+    <!--div class="navbar-header">
+      <a class="navbar-brand" href="group-list">
+        <i class="fa fa-user"></i>
+        <span>Groups</span>
+      </a>    
+    </div-->
+  
+<template>
+    <require from="bootstrap/css/bootstrap.css"></require>
+    <require from="./styles.css"></require>
+    <require from="./contact-list"></require>
+    <require from="./friend-list"></require>
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href='#'>
+          <i class="fa fa-user"></i>
+          <span>Home</span>
+        </a>
+      </div>
+      <div class="navbar-header">
+          <a class="navbar-brand" href='contacts' >     
+            <i class="fa fa-user"></i>
+            <span>Kursteilnehmer</span>
+          </a>     
+        </div>
+  
+        <div class="navbar-header">
+          <a class="navbar-brand" href='friends'>     
+            <i class="fa fa-user"></i>
+            <span>Friends</span>
+          </a>     
+      </div>
+    </nav>
+
+    <div class="container">        
+        <div class="row">
+          <contact-list class="col-md-4"></contact-list> 
+          <friend-list class="col-md-4"></friend-list>
+          <router-view class="col-md-8"></router-view>
+        </div>       
+    </div>
+     
+  </template>
