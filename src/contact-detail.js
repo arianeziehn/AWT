@@ -1,4 +1,4 @@
-import {inject} from 'aurelia-framework';
+import {inject, bindable } from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {WebAPI} from './web-api';
 import {ContactUpdated,ContactViewed} from './message';
@@ -6,6 +6,11 @@ import {areEqual} from './utility';
 
 @inject(WebAPI, EventAggregator)
 export class ContactDetail {
+
+//CustomElement
+
+@bindable contactid = -1
+
   constructor(api, ea){
     this.api = api;
     this.ea = ea;
@@ -13,7 +18,7 @@ export class ContactDetail {
 
   activate(params, routeConfig) {
     this.routeConfig = routeConfig;
-
+    //if(contactid != -1){
     return this.api.getContactDetails(params.id).then(contact => {
       this.contact = contact;
       this.routeConfig.navModel.setTitle(contact.firstName);
@@ -21,6 +26,7 @@ export class ContactDetail {
       this.ea.publish(new ContactViewed(this.contact));
     });
   }
+  //}
 
   get canSave() {
     return !this.contact.friend && !this.api.isRequesting;

@@ -1,10 +1,10 @@
 <template>
     <require from="bootstrap/css/bootstrap.css"></require>
     <require from="./styles.css"></require>
-    <require from="./contact-detail"></require>
+    <require from="./contact-detail.html"></require>
     
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!--nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navbar-header">
             <a class="navbar-brand" href="#" >     
               <i class="fa fa-user"></i>
@@ -31,17 +31,19 @@
           </a>
         
         </div-->
-      </nav>
-
+      <!--/nav-->
+      <!--p>${selectedId}</p>
+  <p>${selectedContact.lastName}</p-->
       <div class="contact-list">
           <ul class="list-group">
             <li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
-              <a route-href="route: contactsDetail; params.bind: {id:contact.id}" click.delegate="$parent.select(contact)">
+              <a click.delegate="$parent.select(contact)">
                 <h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
                 <p class="list-group-item-text">${contact.email}</p>
               </a>
             </li>
           </ul>         
         </div>
+  <contact-detail contact.bind="selectedContact" ></contact-detail>
  
 </template>

@@ -8,6 +8,7 @@ export class ContactList {
   constructor(api, ea) {
     this.api = api;
     this.contacts = [];
+    this.selectedContact = null;
 
     ea.subscribe(ContactViewed, msg => this.select(msg.contact));
     ea.subscribe(ContactUpdated, msg => {
@@ -23,6 +24,7 @@ export class ContactList {
 
   select(contact) {
     this.selectedId = contact.id;
+    this.selectedContact = contact;
     return true;
   }
 }
