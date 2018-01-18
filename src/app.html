@@ -1,12 +1,7 @@
-    
-    <!--div class="navbar-header">
-      <a class="navbar-brand" href="group-list">
-        <i class="fa fa-user"></i>
-        <span>Groups</span>
-      </a>    
-    </div-->
-  
+  <!--app.html is the init page, here we define the navbar elements and the components we want to add to it. Router-View is
+  used to watch elements that change while navigating through the different sites -->
 <template>
+
     <require from="bootstrap/css/bootstrap.css"></require>
     <require from="./styles.css"></require>
     <require from="./contact-list"></require>
@@ -14,14 +9,6 @@
     
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <!-- div class="navbar-header" repeat.for="row of router.navigation">
-
-        <a class="navbar-brand" href.bind="row.href">
-          <i class="fa fa-user"></i>
-          <span>${row.title}</span>
-        </a>
-      </div -->
-
       <div class="navbar-header">
         <a class="navbar-brand" href='#'>
           <i class="fa fa-user"></i>
@@ -41,14 +28,19 @@
             <span>Friends</span>
           </a>     
       </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href='#/group'>
+          <i class="fa fa-user"></i>
+          <span>Groups</span>
+        </a>
+      </div>
     </nav>
 
     <div class="container">        
-        <div class="row">
-          <!--contact-list class="col-md-4"></--contact-list>
-         // <friend-list class="col-md-4"></friend-list-->
-          <router-view class="col-md-4"></router-view>
-        </div>       
+        <div class="col">
+         <router-view class="col-md-10"></router-view>
+        </div>
     </div>
      
   </template>

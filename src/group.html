@@ -1,21 +1,25 @@
-<template bindable="selectedContact">
-    <require from="bootstrap/css/bootstrap.css"></require>
-    <require from="./styles.css"></require>  
+<template>
+  <require from="bootstrap/css/bootstrap.css"></require>
+  <require from="./styles.css"></require>
 
-
-   
-    <div class="friend-list">              
+  <p>${group.members[0]}</p>
+  <div class="group-list">
     <ul class="list-group">
-      <li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
-        <a click.delegate="$parent.select(contact)">
-          <h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
-          <p class="list-group-item-text">${contact.email}</p>      
+      <li repeat.for="group of groups" class="list-group-item ${group.groupId === $parent.groupId ? 'active' : ''}">
+        <a click.delegate="$parent.select(group)">
+          <h4 class="list-group-item-heading">${group.groupId}</h4>
+          <p class="list-group-item-text">Members</p>
+        </a>
+      <li repeat.for="member of group.members" class="list-group-item">
+        <a>
+          <p class="list-group-item-text">${member.firstName}, ${member.lastName}</p>
         </a>
       </li>
+      </li>
     </ul>
-    </div>
+  </div>
 
-  <div contact.bind="selectedContact">
+  <!--div contact.bind="selectedContact">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Informationen</h3>
@@ -47,6 +51,6 @@
         </form>
       </div>
     </div>
-  </div>
+  </div-->
 
 </template>

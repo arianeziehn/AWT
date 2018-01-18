@@ -1,49 +1,65 @@
-<template>
+<template bindable="selectedContact">
+
     <require from="bootstrap/css/bootstrap.css"></require>
     <require from="./styles.css"></require>
     <require from="./contact-detail.html"></require>
-    
 
-    <!--nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" >     
-              <i class="fa fa-user"></i>
-              <span>Home</span>
-            </a>         
+    <div class="contact-list" align="left">
+      <ul class="list-group">
+        <li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
+          <a click.delegate="$parent.select(contact)">
+            <h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
+              <p class="list-group-item-text">${contact.email}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  <!--contact-detail contact.bind="selectedContact"-->
+  <div contact.bind="selectedContact">
+    <div class="panel panel-primary" align="right">
+      <div class="panel-heading">
+        <h3 class="panel-title">Informationen</h3>
+      </div>
+
+      <div class="panel-body">
+        <form role="form" class="form-horizontal">
+          <div class="form-group">
+            <label align = "left" class="col-sm-2 control-label">Vorname</label>
+            <div align = "left" class="col-sm-10">
+              <label align = "left" class="col-sm-2 control-label">${selectedContact.firstName}</label>
+            </div>
           </div>
-        <div class="navbar-header">
-          <a class="navbar-brand" href="contacts" >     
-            <i class="fa fa-user"></i>
-            <span>Kursteilnehmer</span>
-          </a>         
-        </div>
 
-        <div class="navbar-header">
-          <a class="navbar-brand" href="friends">
-            <i class="fa fa-user"></i>
-            <span>Friends</span>
-          </a>
-        </div>
-        <!--div class="navbar-header">
-          <a class="navbar-brand" href="group-list">
-            <i class="fa fa-user"></i>
-            <span>Groups</span>
-          </a>
-        
-        </div-->
-      <!--/nav-->
-      <!--p>${selectedId}</p>
-  <p>${selectedContact.lastName}</p-->
-      <div class="contact-list">
-          <ul class="list-group">
-            <li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
-              <a click.delegate="$parent.select(contact)">
-                <h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
-                <p class="list-group-item-text">${contact.email}</p>
-              </a>
-            </li>
-          </ul>         
-        </div>
-  <contact-detail contact.bind="selectedContact" ></contact-detail>
- 
+          <div align = "left" class="form-group">
+            <label align = "left" class="col-sm-2 control-label">Nachame</label>
+            <div class="col-sm-10">
+              <label align = "left" class="col-sm-2 control-label">${selectedContact.lastName}</label>
+            </div>
+          </div>
+
+          <div align = "left" class="form-group">
+            <label align = "left" class="col-sm-2 control-label">Email</label>
+            <div align = "left" class="col-sm-10">
+              <label class="col-sm-2 control-label">${selectedContact.email}</label>
+
+            </div>
+          </div>
+
+          <div align = "left" class="form-group">
+            <label align = "left" class="col-sm-2 control-label">Friends</label>
+            <div align = "left" class="col-sm-10">
+              <panel class="col-sm-2 control-label">${selectedContact.friend}</panel>
+            </div>
+          </div>
+
+          <div class="button-bar">
+            <button class="btn btn-success" click.delegate="add()">Als Freund hinzufügen</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  <!--/contact-detail-->
+
 </template>

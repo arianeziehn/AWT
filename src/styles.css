@@ -17,20 +17,29 @@ a:focus {
 }
 
 .contact-list {
+  float : left;
   overflow-y: auto;
   border: 1px solid #ddd;
   padding: 10px;
 }
 
 .friend-list {
+  float : left;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.group-list {
+  float : left;
   overflow-y: auto;
   border: 1px solid #ddd;
   padding: 10px;
 }
 
 .panel {
-  float : left;
-    margin: 40px 100px 6px;
+  float : right;
+  margin: 40px 100px 6px;
 }
 
 .button-bar {

@@ -1,5 +1,6 @@
 let latency = 200;
 let id = 0;
+let groupId = 1;
 
 function getId(){
   return ++id;
@@ -12,7 +13,8 @@ let contacts = [
     lastName:'Dichmann',
     email:'henrikdichmann@campus.tu-berlin.de',
     phoneNumber:'0164789159894',
-    friend: 'true'
+    friend: 'true',
+    groupId: '1'
   },
   {
     id:getId(),
@@ -20,7 +22,8 @@ let contacts = [
     lastName:'Wille',
     email:'fionawille@campus.tu-berlin.de',
     phoneNumber:'33166401',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -28,7 +31,8 @@ let contacts = [
     lastName:'Müller',
     email:'julianmüller@campus.tu-berlin.de',
     phoneNumber:'646812024055',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -36,7 +40,8 @@ let contacts = [
     lastName:'Siemund',
     email:'aliasiemund@campus.tu-berlin.de',
     phoneNumber:'867-5309',
-    friend: 'true'
+    friend: 'true',
+    groupId: '1'
   },
   {
     id:getId(),
@@ -44,7 +49,8 @@ let contacts = [
     lastName:'Ziehn',
     email:'arianeziehn@campus.tu-berlin.de',
     phoneNumber:'1245015001',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -52,7 +58,8 @@ let contacts = [
     lastName:'Tolkien',
     email:'tolkien@inklings.com',
     phoneNumber:'867-5309',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -60,7 +67,8 @@ let contacts = [
     lastName:'Lewis',
     email:'lewis@inklings.com',
     phoneNumber:'867-5309',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -68,7 +76,8 @@ let contacts = [
     lastName:'Barfield',
     email:'barfield@inklings.com',
     phoneNumber:'867-5309',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -76,7 +85,8 @@ let contacts = [
     lastName:'Williams',
     email:'williams@inklings.com',
     phoneNumber:'867-5309',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   },
   {
     id:getId(),
@@ -84,10 +94,24 @@ let contacts = [
     lastName:'Green',
     email:'green@inklings.com',
     phoneNumber:'867-5309',
-    friend: 'false'
+    friend: 'false',
+    groupId: '0'
   }
 
 ];
+
+let groups = [
+  {
+    groupId: '1',
+    members: [{
+    firstName:'Henrik',
+    lastName:'Dichmann'
+    },
+    {
+    firstName:'Alia',
+    lastName:'Siemund'
+    }]
+}];
 
 export class WebAPI {
   isRequesting = false;
@@ -108,6 +132,23 @@ export class WebAPI {
       }, latency);
     });
   }
+
+   getGroupMembers(){
+      this.isRequesting = true;
+      return new Promise(resolve => {
+        setTimeout(() => {
+          let resultsGroup = groups.map( x =>  { return {
+            groupId : x.groupId,
+            members : x.members.map( y => { return {
+                firstName = y.firstName,
+                lastName = y.lastName
+                }})
+          }});
+          resolve(resultsGroup);
+          this.isRequesting = false;
+        }, latency);
+      });
+    }
 
   getFriendList(){
     this.isRequesting = true;

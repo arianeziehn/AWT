@@ -1,12 +1,20 @@
+import {EventAggregator} from 'aurelia-event-aggregator';
 import {WebAPI} from './web-api';
-import {inject} from 'aurelia-framework';
+import {ContactUpdated, ContactViewed} from './message';
 import {areEqual} from './utility';
+import {inject, bindable } from 'aurelia-framework';
 
-@inject(WebAPI)
+
+@inject(WebAPI, EventAggregator)
 export class FriendList {
-  constructor(api) {
+
+@bindable selectedContact
+
+  constructor(api, ea) {
     this.api = api;
     this.contacts = [];
+    this.ea = ea;
+    this.selectedContact = null;
   }
 
   created() {
@@ -17,6 +25,7 @@ export class FriendList {
 
   select(contact) {    
     this.selectedId = contact.id;
+    this.selectedContact = contact;
     return true;
   
 }
